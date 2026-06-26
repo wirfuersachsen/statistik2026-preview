@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wir für Sachsen 2026 – Statistik</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #f0f4f8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+      padding: 48px 56px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #0078d4;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 36px;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #374151;
+      text-align: left;
+      margin-bottom: 8px;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 15px;
+      color: #1a1a2e;
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 16px;
+    }
+
+    input[type="password"]:focus {
+      border-color: #0078d4;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      background: #0078d4;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover { background: #005fa3; }
+
+    .error {
+      display: none;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #dc2626;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 5px;
+      padding: 10px 14px;
+    }
+
+    .hint {
+      margin-top: 28px;
+      font-size: 12px;
+      color: #9ca3af;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">Wir für Sachsen</div>
+    <h1>Statistische Auswertung 2026</h1>
+    <p class="subtitle">Datenstand: 17. Juni 2026 · Vorschau</p>
+
+    <label for="pw">Zugangscode</label>
+    <input type="password" id="pw" placeholder="••••••••" autofocus>
+    <button onclick="check()">Bericht öffnen</button>
+    <div class="error" id="err">Zugangscode nicht korrekt. Bitte erneut versuchen.</div>
+
+    <p class="hint">
+      Zur Navigation zwischen den Seiten<br>
+      auf die Seitenzahl unten im Bericht klicken.
+    </p>
+  </div>
+
+  <script>
+    document.getElementById('pw').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') check();
+    });
+
+    function check() {
+      const val = document.getElementById('pw').value;
+      const err = document.getElementById('err');
+      if (val === '2026stat') {
+        window.location.href = 'https://app.powerbi.com/view?r=eyJrIjoiMDkwZTU2YmYtNGMyYy00ZGM0LThjZjMtODBhNGI4ZTMwZTA2IiwidCI6ImZkZTM3ODFjLTU5M2UtNDkxNi1iNzdiLTQ4NTBiNjg3ODk3NSJ9&pageName=7ed413f69e480bd08305';
+      } else {
+        err.style.display = 'block';
+        document.getElementById('pw').value = '';
+        document.getElementById('pw').focus();
+      }
+    }
+  </script>
+</body>
+</html>
