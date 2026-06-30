@@ -202,16 +202,26 @@
       if (e.key === 'Enter') check();
     });
 
+    function showReport() {
+      const reportUrl = 'https://app.powerbi.com/view?r=eyJrIjoiMDkwZTU2YmYtNGMyYy00ZGM0LThjZjMtODBhNGI4ZTMwZTA2IiwidCI6ImZkZTM3ODFjLTU5M2UtNDkxNi1iNzdiLTQ4NTBiNjg3ODk3NSJ9&pageName=7ed413f69e480bd08305';
+      document.getElementById('report-frame').src = reportUrl;
+      document.querySelector('.card').style.display = 'none';
+      document.getElementById('report-view').style.display = 'block';
+      document.getElementById('feedback-floating').style.display = 'block';
+      document.body.classList.add('report-active');
+    }
+
+    // Beim Laden prüfen, ob in dieser Sitzung bereits eingeloggt
+    if (sessionStorage.getItem('wfs_unlocked') === 'true') {
+      showReport();
+    }
+
     function check() {
       const val = document.getElementById('pw').value;
       const err = document.getElementById('err');
       if (val === '2026stat') {
-        const reportUrl = 'https://app.powerbi.com/view?r=eyJrIjoiMDkwZTU2YmYtNGMyYy00ZGM0LThjZjMtODBhNGI4ZTMwZTA2IiwidCI6ImZkZTM3ODFjLTU5M2UtNDkxNi1iNzdiLTQ4NTBiNjg3ODk3NSJ9&pageName=7ed413f69e480bd08305';
-        document.getElementById('report-frame').src = reportUrl;
-        document.querySelector('.card').style.display = 'none';
-        document.getElementById('report-view').style.display = 'block';
-        document.getElementById('feedback-floating').style.display = 'block';
-        document.body.classList.add('report-active');
+        sessionStorage.setItem('wfs_unlocked', 'true');
+        showReport();
       } else {
         err.style.display = 'block';
         document.getElementById('pw').value = '';
